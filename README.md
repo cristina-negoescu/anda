@@ -35,6 +35,27 @@ Formularul **nu trimite și nu salvează date** și comunică explicit acest luc
 
 Fotografia de pădure este încărcată de la Unsplash, iar fonturile de la Google Fonts. Pentru producție se recomandă găzduire locală și actualizarea politicii privind resursele externe. Nu sunt integrate analytics sau cookies de marketing. Fonturile au fallback local.
 
-Paleta este definită în `src/styles.css`: `#245C59`, `#8FA99A`, `#F7F4ED`, `#D9A47E`. Conținutul și componentele sunt în `src/main.tsx`.
+Paleta este definită în `src/styles.css`: `#245C59`, `#8FA99A`, `#F7F4ED`, `#D9A47E`. Paginile sunt în `src/pages/`, componentele reutilizabile în `src/components/`, iar conținutul comun în `src/data/`.
 
 Repository țintă: https://github.com/cristina-negoescu/anda. Proiectul este generat local; nu include un push sau o publicare automată.
+
+## Organizarea codului
+
+```text
+src/
+  main.tsx                 # Inițializarea React și BrowserRouter
+  App.tsx                  # Rutele aplicației
+  pages/                   # Câte un fișier pentru fiecare pagină
+  components/              # Buton, brand, formular, FAQ, titlu, CTA, ilustrație
+    layout/                # Header, Footer și SiteLayout cu Outlet
+  data/                    # Navigație, servicii și întrebări frecvente
+  hooks/                   # Titlul paginii și scroll la navigare
+  styles.css               # Stiluri globale și responsive
+```
+
+Pentru a modifica o pagină, editați fișierul ei din `pages/`. Conținutul serviciilor este definit o singură dată în `data/services.ts` și folosit atât pe Acasă, cât și pe pagina serviciilor. Componenta `SiteLayout` păstrează antetul și subsolul comune tuturor rutelor, inclusiv paginii 404. Formularul își gestionează starea în `components/ContactForm.tsx`.
+
+```sh
+npm run format
+npm run format:check
+```
